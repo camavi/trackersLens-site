@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "npm run min:css && npm run min:js",
+    "min:css": "lightningcss --minify --targets '>= 0.25%' --bundle assets/css/style.css -o assets/css/style.min.css",
+    "min:js": "terser assets/js/main.js --compress --mangle -o assets/js/main.min.js"
+  },
+  "devDependencies": {
+    "lightningcss-cli": "^1.30.2",
+    "terser": "^5.43.1"
+  }
+}

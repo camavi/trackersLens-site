@@ -3,6 +3,7 @@ DirectoryIndex index.php
 RewriteEngine On
 RewriteRule ^$ /it/ [R=302,L]
 RewriteRule ^(it|en|es)/?$ index.php?lang=$1 [L,QSA]
+RewriteRule ^(it|en|es)/(features|pricing|roadmap|changelog|docs|privacy|terms|blog|about)/?$ index.php?lang=$1&page=$2 [L,QSA]
 
 <IfModule mod_expires.c>
   ExpiresActive On
