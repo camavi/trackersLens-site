@@ -1,7 +1,7 @@
 {
   "name": "Trackers Lens",
   "short_name": "Trackers Lens",
-  "description": "AI-powered local data monitoring platform for APIs, WebSocket, RSS, AI agents and browser dashboards.",
+  "description": "Trackers Lens desktop app: local data, Flow Map, Python, Node.js and AI models.",
   "start_url": "/it/",
   "scope": "/",
   "display": "standalone",

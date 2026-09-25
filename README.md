@@ -56,3 +56,15 @@ in questo progetto (esclusi da Git); i repository originali restano intatti.
 Non sono stati modificati hosting, DNS o dati di produzione. Gli eventuali redirect
 dai precedenti sottodomini API/app vanno configurati al momento del deploy;
 per i client API preservare metodo e corpo della richiesta.
+
+## Avvio dall’editor
+
+Usare lo script `dev` del `package.json` nella radice del progetto, non quelli
+presenti in `vendor/`. Per avviare il sito da qualsiasi cartella:
+
+```sh
+npm --prefix /Users/cmalleux/Sites/trackerslens-site run dev
+```
+
+Il `vite.config.js` del renderer delle eccezioni Laravel è uno strumento interno
+al framework: non serve avviarlo né installarne Tailwind per usare il sito.

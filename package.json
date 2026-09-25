@@ -3,7 +3,7 @@
     "dev": "npm run build && php artisan serve --host=127.0.0.1",
     "build": "npm run build:landing && npm run build:dashboard",
     "build:landing": "npm run min:css && npm run min:js",
-    "build:dashboard": "vite build",
+    "build:dashboard": "vite build --config ./vite.config.js",
     "min:css": "lightningcss --minify --targets '>= 0.25%' --bundle public/assets/css/style.css -o public/assets/css/style.min.css",
     "min:js": "terser public/assets/js/main.js --compress --mangle -o public/assets/js/main.min.js",
     "test": "php artisan test"

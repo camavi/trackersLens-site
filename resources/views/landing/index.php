@@ -39,14 +39,14 @@ $lang = detect_language($supportedLanguages, $fallbackLanguage);
 $page = detect_page($supportedLanguages);
 $baseUrl = 'https://trackerslens.com';
 $canonical = $baseUrl . '/' . $lang . '/' . ($page === 'home' ? '' : $page . '/');
-$assetVersion = '20260925-unified';
+$assetVersion = '20260925-desktop-app';
 $siteName = 'Trackers Lens';
 $apiBaseUrl = '';
 $appBaseUrl = '/app';
 $seoAuthor = 'Trackers Lens';
-$seoKeywords = 'trackers lens, AI dashboard, browser runtime, local data platform, websocket dashboard, API monitoring, RSS monitoring, AI agents, boxTracker, boxLens, local analytics, privacy first dashboard, realtime monitoring, browser automation, data orchestration';
+$seoKeywords = 'Trackers Lens, desktop app, local AI, Python, Node.js, JavaScript, Flow Map, AI models, RAG, SQLite, automation';
 $ogImage = $baseUrl . '/assets/seo/trackers-lens-og.jpg';
-$ogImageAlt = 'Trackers Lens AI-powered local data monitoring platform preview';
+$ogImageAlt = 'Trackers Lens desktop app — Python, Node.js and AI models';
 
 if (!function_exists(__NAMESPACE__ . '\\value_for_key')) {
 function value_for_key(array $source, string $key)
@@ -156,15 +156,10 @@ $jsonLd = [
       '@id' => $baseUrl . '/#software',
       'name' => $siteName,
       'applicationCategory' => 'DeveloperApplication',
-      'operatingSystem' => 'Chrome, Chromium, Browser Extension',
+      'featureList' => ['Flow Map', 'Managed Python', 'JavaScript nodes', 'AI models', 'Local SQLite'],
       'url' => $canonical,
       'description' => tv('meta.description'),
       'image' => $ogImage,
-      'offers' => [
-        '@type' => 'Offer',
-        'price' => '0',
-        'priceCurrency' => 'USD',
-      ],
       'publisher' => ['@id' => $baseUrl . '/#organization'],
     ],
   ],
@@ -206,7 +201,7 @@ $jsonLd = [
   <meta property="og:description" content="<?= $page === 'home' ? t('meta.description') : t('pages.' . $page . '.metaDescription') ?>">
   <meta property="og:image" content="<?= htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8') ?>">
   <meta property="og:image:secure_url" content="<?= htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8') ?>">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="<?= htmlspecialchars($ogImageAlt, ENT_QUOTES, 'UTF-8') ?>">
@@ -268,7 +263,7 @@ $jsonLd = [
         <ul class="nav-links">
           <li><a href="<?= page_url('features') ?>"><?= t('nav.features') ?></a></li>
           <li><a href="<?= page_url('home') ?>#why"><?= t('nav.why') ?></a></li>
-          <li><a href="<?= page_url('home') ?>#marketplace"><?= t('nav.marketplace') ?></a></li>
+          <li><a href="<?= page_url('home') ?>#runtimes"><?= t('nav.marketplace') ?></a></li>
           <li><a href="<?= page_url('pricing') ?>"><?= t('nav.pricing') ?></a></li>
           <li><a href="<?= page_url('docs') ?>"><?= t('nav.docs') ?></a></li>
         </ul>
@@ -303,9 +298,6 @@ $jsonLd = [
                 <strong><?= t('hero.devLabel') ?></strong>
                 <span><?= t('hero.devStatus') ?></span>
               </div>
-              <div class="launch-progress" role="progressbar" aria-label="<?= t('hero.devProgress') ?>" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
-                <i></i>
-              </div>
               <p><?= t('hero.devBody') ?></p>
             </div>
             <div class="cta-row">
@@ -319,37 +311,20 @@ $jsonLd = [
             </ul>
           </div>
 
-          <div class="hero-visual reveal" id="demo" aria-label="Trackers Lens dashboard mockup">
-            <div class="dashboard-shell">
-              <div class="window-bar">
-                <span class="brand-mini">Trackers Lens</span>
-                <span class="window-dot"></span>
-              </div>
-              <div class="dashboard-layout">
-                <aside class="mock-sidebar" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span>
-                </aside>
-                <div class="mock-content">
-                  <div class="metric-grid">
-                    <article class="metric-card"><span><?= t('hero.metricTrackers') ?></span><strong>24</strong><small>+8.7%</small></article>
-                    <article class="metric-card"><span><?= t('hero.metricData') ?></span><strong>2.4M</strong><small>+12%</small></article>
-                    <article class="metric-card"><span><?= t('hero.metricInsights') ?></span><strong>152</strong><small>+31%</small></article>
-                    <article class="metric-card"><span><?= t('hero.metricActions') ?></span><strong>37</strong><small>+6%</small></article>
-                  </div>
-                  <div class="chart-grid">
-                    <div class="chart-card large">
-                      <span><?= t('hero.chartActivity') ?></span>
-                      <div class="line-chart" aria-hidden="true"></div>
-                    </div>
-                    <div class="chart-card">
-                      <span><?= t('hero.chartResources') ?></span>
-                      <div class="bar-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
-                  </div>
-                  <div class="tracker-row" aria-hidden="true">
-                    <span>BTC Price</span><span>News Monitor</span><span>Twitter Trend</span><span>Portfolio</span>
-                  </div>
-                </div>
+          <div class="hero-visual reveal" id="demo" aria-label="<?= t('hero.previewLabel') ?>">
+            <div class="runtime-preview">
+              <div class="window-bar"><span class="brand-mini">Trackers Lens App</span><span>Flow Map</span></div>
+              <div class="runtime-preview-body">
+                <span class="runtime-preview-label"><?= t('hero.previewLabel') ?></span>
+                <h2><?= t('hero.previewTitle') ?></h2>
+                <ol class="runtime-flow">
+                  <li class="flow-node flow-source"><?= icon('book') ?><div><strong><?= t('hero.source') ?></strong><span>Knowledge</span></div><b>01</b></li>
+                  <li class="flow-node flow-python"><?= icon('code') ?><div><strong><?= t('hero.retrieval') ?></strong><span>Python · Embeddings · Reranking</span></div><b>02</b></li>
+                  <li class="flow-node flow-ai"><?= icon('brain') ?><div><strong><?= t('hero.agent') ?></strong><span>AI Center · LLM</span></div><b>03</b></li>
+                  <li class="flow-node flow-output"><?= icon('monitoring') ?><div><strong><?= t('hero.output') ?></strong><span>Preview · boxLens</span></div><b>04</b></li>
+                </ol>
+                <div class="runtime-inspection"><?= icon('check') ?><span><?= t('hero.control') ?></span></div>
+                <p class="runtime-preview-note"><?= t('hero.previewNote') ?></p>
               </div>
             </div>
           </div>
@@ -394,7 +369,7 @@ $jsonLd = [
       <section class="section" id="why">
         <div class="container privacy-grid">
           <article class="privacy-panel reveal">
-            <div class="server-visual" role="img" aria-label="Local encrypted runtime visualization">
+            <div class="server-visual" role="img" aria-label="<?= t('privacy.title') ?>">
               <div class="server-lines" aria-hidden="true"></div>
               <span class="privacy-badge"><?= t('privacy.badge') ?></span>
               <h2><?= t('privacy.title') ?></h2>
@@ -412,7 +387,7 @@ $jsonLd = [
         </div>
       </section>
 
-      <section class="section" id="marketplace">
+      <section class="section" id="runtimes">
         <div class="container">
           <div class="section-heading reveal">
             <h2><?= t('architecture.title') ?></h2>
@@ -441,7 +416,7 @@ $jsonLd = [
             <p><?= t('boxes.body') ?></p>
           </div>
           <div class="data-flow reveal" aria-label="Data flow diagram">
-            <span>API</span><i>→</i><span>boxTracker</span><i>→</i><span>AI Agent</span><i>→</i><span>boxLens</span>
+            <span><?= t('hero.source') ?></span><i>→</i><span>Python</span><i>→</i><span>AI Agent</span><i>→</i><span>boxLens</span>
           </div>
         </div>
       </section>
@@ -451,19 +426,12 @@ $jsonLd = [
           <div class="developer-copy reveal">
             <h2><?= t('developers.title') ?></h2>
             <p><?= t('developers.body') ?></p>
-            <pre><code>const tracker = new Tracker({
-  name: "BTC Price",
-  source: "wss://api.binance.com/ticker",
-  interval: "10s",
-  output: "btc-price"
-});
-
-tracker.start();</code></pre>
+            <div class="workflow-example"><strong><?= t('developers.example') ?></strong><p>Knowledge → Python RAG → AI Agent → Preview</p></div>
           </div>
           <div class="resource-grid reveal">
-            <a href="<?= $canonical ?>#docs" class="resource-card"><?= icon('book') ?><strong><?= t('developers.docs') ?></strong></a>
+            <a href="<?= page_url('docs') ?>" class="resource-card"><?= icon('book') ?><strong><?= t('developers.docs') ?></strong></a>
             <a href="<?= $apiBaseUrl ?>/docs/api-contract" class="resource-card"><?= icon('api') ?><strong><?= t('developers.api') ?></strong></a>
-            <a href="<?= $canonical ?>#demo" class="resource-card"><?= icon('code') ?><strong><?= t('developers.examples') ?></strong></a>
+            <a href="<?= page_url('home') ?>#demo" class="resource-card"><?= icon('code') ?><strong><?= t('developers.examples') ?></strong></a>
             <a href="https://github.com/trackerslens" class="resource-card" target="_blank" rel="noopener noreferrer"><?= icon('groups') ?><strong><?= t('developers.community') ?></strong></a>
           </div>
         </div>
@@ -471,10 +439,10 @@ tracker.start();</code></pre>
 
       <section class="section stats-section">
         <div class="container stats-grid reveal">
-          <div><strong>10K+</strong><span><?= t('stats.users') ?></span></div>
-          <div><strong>50K+</strong><span><?= t('stats.trackers') ?></span></div>
-          <div><strong>2.4M+</strong><span><?= t('stats.data') ?></span></div>
-          <div><strong>99.9%</strong><span><?= t('stats.uptime') ?></span></div>
+          <div><strong>TL App</strong><span><?= t('stats.users') ?></span></div>
+          <div><strong>Python</strong><span><?= t('stats.trackers') ?></span></div>
+          <div><strong>AI</strong><span><?= t('stats.data') ?></span></div>
+          <div><strong>SQLite</strong><span><?= t('stats.uptime') ?></span></div>
         </div>
       </section>
 
@@ -520,10 +488,10 @@ tracker.start();</code></pre>
               <a class="btn btn-secondary btn-large" href="<?= page_url('roadmap') ?>"><?= icon('map') ?><?= t('footer.roadmap') ?></a>
             </div>
           </div>
-          <div class="product-console reveal" aria-label="Trackers Lens plugin feature map">
-            <div class="console-top"><span>Runtime Plugin</span><strong>Local First</strong></div>
+          <div class="product-console reveal" aria-label="Trackers Lens App">
+            <div class="console-top"><span>TL App · Runtime</span><strong>Local First</strong></div>
             <div class="console-map">
-              <span>Library</span><span>Workspace</span><span>boxLens</span><span>boxTracker</span><span>Monitor</span><span>AI Runtime</span><span>IndexedDB</span><span>Connections</span>
+              <span>Library</span><span>Workspace</span><span>boxLens</span><span>Node.js</span><span>Python</span><span>AI Runtime</span><span>SQLite</span><span>Connections</span>
             </div>
           </div>
         </div>
@@ -559,9 +527,9 @@ tracker.start();</code></pre>
             <p><?= t('pages.features.futureBody') ?></p>
           </div>
           <div class="timeline-card reveal">
-            <div><strong>1</strong><span>Browser plugin</span></div>
-            <div><strong>2</strong><span>Dashboard cloud</span></div>
-            <div><strong>3</strong><span>App runtime dedicata</span></div>
+            <div><strong>1</strong><span><?= t('pages.features.step1') ?></span></div>
+            <div><strong>2</strong><span><?= t('pages.features.step2') ?></span></div>
+            <div><strong>3</strong><span><?= t('pages.features.step3') ?></span></div>
           </div>
         </div>
       </section>
@@ -573,7 +541,6 @@ tracker.start();</code></pre>
           <p class="hero-lead"><?= t('pages.pricing.subtitle') ?></p>
           <div class="launch-status pricing-progress" aria-label="<?= t('hero.devLabel') ?>">
             <div class="launch-status-top"><span class="launch-pulse" aria-hidden="true"></span><strong><?= t('pages.pricing.progressLabel') ?></strong><span><?= t('pages.pricing.progressStatus') ?></span></div>
-            <div class="launch-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42"><i></i></div>
             <p><?= t('pages.pricing.progressBody') ?></p>
           </div>
         </div>
@@ -601,19 +568,19 @@ tracker.start();</code></pre>
       </section>
       <section class="section">
         <div class="container roadmap-list">
-          <article class="roadmap-item reveal is-now"><?= icon('check') ?><span>Q2 2026</span>
+          <article class="roadmap-item reveal is-now"><?= icon('check') ?><span><?= t('pages.roadmap.current') ?></span>
             <h3><?= t('pages.roadmap.q2.title') ?></h3>
             <p><?= t('pages.roadmap.q2.body') ?></p>
           </article>
-          <article class="roadmap-item reveal"><?= icon('clock') ?><span>Q3 2026</span>
+          <article class="roadmap-item reveal"><?= icon('clock') ?><span><?= t('pages.roadmap.active') ?></span>
             <h3><?= t('pages.roadmap.q3.title') ?></h3>
             <p><?= t('pages.roadmap.q3.body') ?></p>
           </article>
-          <article class="roadmap-item reveal"><?= icon('rocket') ?><span>Q4 2026</span>
+          <article class="roadmap-item reveal"><?= icon('rocket') ?><span><?= t('pages.roadmap.active') ?></span>
             <h3><?= t('pages.roadmap.q4.title') ?></h3>
             <p><?= t('pages.roadmap.q4.body') ?></p>
           </article>
-          <article class="roadmap-item reveal"><?= icon('map') ?><span>2027</span>
+          <article class="roadmap-item reveal"><?= icon('map') ?><span><?= t('pages.roadmap.next') ?></span>
             <h3><?= t('pages.roadmap.y2027.title') ?></h3>
             <p><?= t('pages.roadmap.y2027.body') ?></p>
           </article>
@@ -629,19 +596,19 @@ tracker.start();</code></pre>
       </section>
       <section class="section">
         <div class="container changelog-list">
-          <article class="changelog-entry reveal"><time>2026-05-13</time>
+          <article class="changelog-entry reveal"><time datetime="2026-09">09 / 2026</time>
             <h3><?= t('pages.changelog.items.site.title') ?></h3>
             <p><?= t('pages.changelog.items.site.body') ?></p>
           </article>
-          <article class="changelog-entry reveal"><time>2026-05-12</time>
+          <article class="changelog-entry reveal"><time datetime="2026-09">09 / 2026</time>
             <h3><?= t('pages.changelog.items.dashboard.title') ?></h3>
             <p><?= t('pages.changelog.items.dashboard.body') ?></p>
           </article>
-          <article class="changelog-entry reveal"><time>2026-05-11</time>
+          <article class="changelog-entry reveal"><time datetime="2026-09">09 / 2026</time>
             <h3><?= t('pages.changelog.items.runtime.title') ?></h3>
             <p><?= t('pages.changelog.items.runtime.body') ?></p>
           </article>
-          <article class="changelog-entry reveal"><time>2026-05-10</time>
+          <article class="changelog-entry reveal"><time datetime="2026-09">09 / 2026</time>
             <h3><?= t('pages.changelog.items.editors.title') ?></h3>
             <p><?= t('pages.changelog.items.editors.body') ?></p>
           </article>
@@ -696,12 +663,12 @@ tracker.start();</code></pre>
       <section class="section">
         <div class="container docs-page-grid">
           <aside class="docs-toc reveal">
-            <a href="#runtime">Runtime</a>
-            <a href="#workspace">Workspace</a>
-            <a href="#boxes">boxLens / boxTracker</a>
-            <a href="#storage">IndexedDB</a>
-            <a href="#screens">Schermate</a>
-            <a href="#api">API</a>
+            <a href="#runtime"><?= t('pages.docs.runtime.title') ?></a>
+            <a href="#workspace"><?= t('pages.docs.workspace.title') ?></a>
+            <a href="#boxes"><?= t('pages.docs.boxes.title') ?></a>
+            <a href="#storage"><?= t('pages.docs.storage.title') ?></a>
+            <a href="#screens"><?= t('pages.docs.screens.title') ?></a>
+            <a href="#api"><?= t('pages.docs.api.title') ?></a>
           </aside>
           <div class="docs-content reveal">
             <article id="runtime">
@@ -711,7 +678,7 @@ tracker.start();</code></pre>
             <article id="workspace">
               <h2><?= t('pages.docs.workspace.title') ?></h2>
               <p><?= t('pages.docs.workspace.body') ?></p>
-              <pre><code>workspace.html?workspaceId=&lt;id-workspace&gt;</code></pre>
+
             </article>
             <article id="boxes">
               <h2><?= t('pages.docs.boxes.title') ?></h2>
@@ -720,11 +687,7 @@ tracker.start();</code></pre>
             <article id="storage">
               <h2><?= t('pages.docs.storage.title') ?></h2>
               <p><?= t('pages.docs.storage.body') ?></p>
-              <pre><code>TrackersLens
-tl_widgets
-tl_pages
-tl_connections
-tl_settings</code></pre>
+
             </article>
             <article id="screens">
               <h2><?= t('pages.docs.screens.title') ?></h2>
@@ -775,15 +738,15 @@ tl_settings</code></pre>
       </section>
       <section class="section">
         <div class="container blog-grid">
-          <article class="feature-card reveal accent-gold"><span>2026-05-14</span>
+          <article class="feature-card reveal accent-gold"><span>09 / 2026</span>
             <h3><?= t('pages.blog.items.docs.title') ?></h3>
             <p><?= t('pages.blog.items.docs.body') ?></p><a class="btn btn-secondary" href="<?= page_url('docs') ?>"><?= t('footer.docs') ?></a>
           </article>
-          <article class="feature-card reveal accent-cyan"><span>2026-05-13</span>
+          <article class="feature-card reveal accent-cyan"><span>09 / 2026</span>
             <h3><?= t('pages.blog.items.api.title') ?></h3>
             <p><?= t('pages.blog.items.api.body') ?></p><a class="btn btn-secondary" href="<?= $apiBaseUrl ?>/docs/api-contract"><?= t('footer.api') ?></a>
           </article>
-          <article class="feature-card reveal accent-purple"><span>2026-05-12</span>
+          <article class="feature-card reveal accent-purple"><span>09 / 2026</span>
             <h3><?= t('pages.blog.items.runtime.title') ?></h3>
             <p><?= t('pages.blog.items.runtime.body') ?></p><a class="btn btn-secondary" href="<?= page_url('roadmap') ?>"><?= t('footer.roadmap') ?></a>
           </article>

@@ -1990,3 +1990,44 @@ code {
     transition-duration: .01ms !important;
   }
 }
+/* Desktop product preview: an illustrative workflow, not usage statistics. */
+.runtime-preview {
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #141429, #080c18);
+  box-shadow: var(--shadow-purple);
+  overflow: hidden;
+}
+.runtime-preview .window-bar { height: 50px; padding: 0 22px; border-bottom: 1px solid var(--line); }
+.runtime-preview-body { padding: 26px; background-image: radial-gradient(#ffffff12 1px, transparent 1px); background-size: 18px 18px; }
+.runtime-preview-label { color: var(--gold); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.runtime-preview h2 { margin: 12px 0 24px; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.25; }
+.runtime-flow { display: grid; gap: 23px; margin: 0; padding: 0; list-style: none; }
+.flow-node { position: relative; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid #a5a5d640; border-radius: 10px; background: #101525; }
+.flow-node:not(:last-child)::after { content: '↓'; position: absolute; bottom: -25px; left: 28px; color: var(--muted); }
+.flow-node > .tl-icon { color: var(--cyan); width: 24px; height: 24px; flex-shrink: 0; }
+.flow-node div { min-width: 0; display: grid; gap: 4px; }
+.flow-node strong { font-size: .92rem; }
+.flow-node div span { color: var(--muted); font-size: .73rem; overflow-wrap: anywhere; }
+.flow-node b { margin-left: auto; font-size: .72rem; color: var(--muted); }
+.flow-python { border-color: #ffb21a70; }
+.flow-python > .tl-icon { color: var(--gold); }
+.flow-ai { border-color: #9b5cff90; }
+.flow-ai > .tl-icon { color: var(--purple); }
+.runtime-inspection { display: flex; gap: 9px; align-items: center; color: var(--green); margin-top: 24px; font-size: .76rem; }
+.runtime-inspection .tl-icon { flex-shrink: 0; }
+.runtime-preview-note { margin: 12px 0 0; font-size: .72rem; line-height: 1.5; color: var(--muted); }
+.workflow-example { margin-top: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #080c18; }
+.workflow-example strong { color: var(--gold); }
+.workflow-example p { line-height: 1.8; }
+@media (max-width: 640px) {
+  .runtime-preview-body { padding: 20px 16px; }
+  .runtime-preview .window-bar { padding: 0 16px; }
+  .flow-node { padding: 12px; gap: 10px; }
+}
+
+.hero-grid > *, .inner-hero-grid > * { min-width: 0; }
+@media (max-width: 760px) {
+  h1 { font-size: clamp(2.35rem, 10.5vw, 3.4rem); overflow-wrap: break-word; }
+}

@@ -1,3 +1,5 @@
+> Aggiornamento 2026-09-25: il sito ora presenta TL App desktop. Vedi `docs/desktop-app-positioning.md` per contenuti, fonti e stato correnti. Le note sotto documentano il lavoro storico.
+
 # Landing page Trackers Lens
 
 Data: 12 maggio 2026

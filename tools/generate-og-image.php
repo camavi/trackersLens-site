@@ -86,12 +86,12 @@ foreach ($blocks as [$cx, $cy, $blockColor]) {
 
 text($image, 34, 230, 162, $white, $fontBold, 'TRACKERS');
 text($image, 34, 458, 162, $gold, $fontBold, 'LENS');
-text($image, 19, 232, 217, $green, $fontBold, 'AI-powered • Privacy first • Open ecosystem');
+text($image, 19, 232, 217, $green, $fontBold, 'Desktop app · Local data · AI workflows');
 
-text($image, 42, 116, 318, $white, $fontBold, 'Local AI Data Monitoring');
-text($image, 40, 116, 374, $violet, $fontBold, 'APIs, RSS & Realtime Data');
-text($image, 22, 120, 445, $muted, $fontRegular, 'Build smart trackers, local dashboards and browser automations.');
-text($image, 22, 120, 480, $muted, $fontRegular, 'Privacy-first architecture powered by Trackers Lens.');
+text($image, 34, 116, 318, $white, $fontBold, 'Your local AI workspace');
+text($image, 40, 116, 374, $violet, $fontBold, 'Python. Node.js. AI.');
+text($image, 17, 120, 445, $muted, $fontRegular, 'Connect data, nodes and models in one desktop app.');
+text($image, 17, 120, 480, $muted, $fontRegular, 'Flow Map · Knowledge · Managed runtimes · SQLite');
 
 imagefilledroundedrectangle($image, 830, 142, 1082, 414, 18, color($image, 8, 13, 28, 18));
 imagerectangle($image, 830, 142, 1082, 414, color($image, 177, 108, 255, 58));
@@ -107,8 +107,8 @@ imageline($image, 906, 280, 950, 294, $violet);
 imageline($image, 950, 294, 992, 236, $violet);
 imageline($image, 992, 236, 1048, 252, $violet);
 
-text($image, 20, 844, 472, $white, $fontBold, 'Browser runtime');
-text($image, 17, 844, 506, $muted, $fontRegular, 'API • WebSocket • RSS • AI Agents');
+text($image, 20, 844, 472, $white, $fontBold, 'Desktop runtime');
+text($image, 17, 844, 506, $muted, $fontRegular, 'Python · Node.js · AI models');
 
 imagepng($image, __DIR__ . '/../public/assets/seo/trackers-lens-og.png', 9);
-imagedestroy($image);
+imagejpeg($image, __DIR__ . '/../public/assets/seo/trackers-lens-og.jpg', 92);

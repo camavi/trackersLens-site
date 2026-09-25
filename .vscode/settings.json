@@ -4,8 +4,13 @@
   "editor.formatOnSave": true,
   "editor.detectIndentation": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-  "eslint.validate": ["javascript", "html"],
+  "editor.codeActionsOnSave": [
+    "source.fixAll.eslint"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "html"
+  ],
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -38,12 +43,23 @@
   "html.format.maxPreserveNewLines": null,
   "html.format.preserveNewLines": true,
   "html.format.wrapLineLength": 120,
-  "htmlhint.documentSelector": ["html", "htm", "twig"],
+  "htmlhint.documentSelector": [
+    "html",
+    "htm",
+    "twig"
+  ],
   "[css]": {
     "editor.suggest.insertMode": "replace",
     "cSpell.fixSpellingWithRenameProvider": false,
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.css-language-features"
   },
-  "cSpell.words": ["cmswift", "Xtts"]
+  "cSpell.words": [
+    "cmswift",
+    "Xtts"
+  ],
+  "npm.exclude": [
+    "**/vendor/**",
+    "**/node_modules/**"
+  ]
 }
