@@ -19,7 +19,8 @@ php artisan migrate
 npm run dev
 ```
 
-Aprire http://127.0.0.1:8000. `npm run dev` compila sito e dashboard,
+Aprire l’indirizzo stampato da Laravel (normalmente http://127.0.0.1:8000).
+Se la porta è occupata, il login supporta anche la porta alternativa scelta dal server. `npm run dev` compila sito e dashboard,
 poi avvia Laravel sullo stesso indirizzo. Dopo modifiche agli asset,
 eseguire nuovamente `npm run build`; non è configurato hot reload.
 `composer dev` richiama lo stesso avvio. `npm test` esegue i test Laravel.

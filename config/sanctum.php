@@ -18,12 +18,11 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
-        Sanctum::currentApplicationUrlWithPort(),
-        // Sanctum::currentRequestHost(),
-    ))),
+    // The unified site uses cookie authentication on its actual host and port,
+    // including ports selected automatically by `artisan serve`.
+    'stateful' => explode(',',
+        env('SANCTUM_STATEFUL_DOMAINS', 'localhost,127.0.0.1').Sanctum::currentRequestHost()
+    ),
 
     /*
     |--------------------------------------------------------------------------
