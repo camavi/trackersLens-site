@@ -1,18 +1,21 @@
 <?php
+namespace App\Landing;
+global $translations, $lang, $fallbackLanguage, $page;
 $translations = require __DIR__ . '/lang.php';
 $supportedLanguages = array_keys($translations);
 $fallbackLanguage = 'it';
 
+if (!function_exists(__NAMESPACE__ . '\\detect_language')) {
 function detect_language(array $supportedLanguages, string $fallbackLanguage): string
 {
-  $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+  $path = trim(parse_url(request()->getRequestUri(), PHP_URL_PATH), '/');
   $firstSegment = explode('/', $path)[0] ?? '';
 
   if (in_array($firstSegment, $supportedLanguages, true)) {
     return $firstSegment;
   }
 
-  $queryLanguage = $_GET['lang'] ?? '';
+  $queryLanguage = request()->query('lang', '');
   if (in_array($queryLanguage, $supportedLanguages, true)) {
     return $queryLanguage;
   }
@@ -23,7 +26,7 @@ function detect_language(array $supportedLanguages, string $fallbackLanguage): s
 function detect_page(array $supportedLanguages): string
 {
   $allowedPages = ['features', 'pricing', 'roadmap', 'changelog', 'docs', 'privacy', 'terms', 'blog', 'about'];
-  $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+  $path = trim(parse_url(request()->getRequestUri(), PHP_URL_PATH), '/');
   $segments = $path === '' ? [] : explode('/', $path);
   $firstSegment = $segments[0] ?? '';
   $page = in_array($firstSegment, $supportedLanguages, true) ? ($segments[1] ?? 'home') : ($segments[0] ?? 'home');
@@ -31,19 +34,21 @@ function detect_page(array $supportedLanguages): string
   return in_array($page, $allowedPages, true) ? $page : 'home';
 }
 
+}
 $lang = detect_language($supportedLanguages, $fallbackLanguage);
 $page = detect_page($supportedLanguages);
 $baseUrl = 'https://trackerslens.com';
 $canonical = $baseUrl . '/' . $lang . '/' . ($page === 'home' ? '' : $page . '/');
-$assetVersion = '20260514-07';
+$assetVersion = '20260925-unified';
 $siteName = 'Trackers Lens';
-$apiBaseUrl = 'https://api.trackerslens.com';
-$appBaseUrl = 'https://app.trackerslens.com';
+$apiBaseUrl = '';
+$appBaseUrl = '/app';
 $seoAuthor = 'Trackers Lens';
 $seoKeywords = 'trackers lens, AI dashboard, browser runtime, local data platform, websocket dashboard, API monitoring, RSS monitoring, AI agents, boxTracker, boxLens, local analytics, privacy first dashboard, realtime monitoring, browser automation, data orchestration';
 $ogImage = $baseUrl . '/assets/seo/trackers-lens-og.jpg';
 $ogImageAlt = 'Trackers Lens AI-powered local data monitoring platform preview';
 
+if (!function_exists(__NAMESPACE__ . '\\value_for_key')) {
 function value_for_key(array $source, string $key)
 {
   $value = $source;
@@ -119,6 +124,8 @@ function icon(string $name, string $class = ''): string
   $path = $icons[$name] ?? $icons['code'];
   $classes = trim('tl-icon ' . $class);
   return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">' . $path . '</svg></span>';
+}
+
 }
 
 $jsonLd = [

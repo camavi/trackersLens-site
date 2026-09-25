@@ -54,8 +54,8 @@ function imagefilledroundedrectangle($image, int $x1, int $y1, int $x2, int $y2,
     imagefilledellipse($image, $x2 - $radius, $y2 - $radius, $radius * 2, $radius * 2, $color);
 }
 
-$fontRegular = __DIR__ . '/../assets/fonts/Ubuntu-R.ttf';
-$fontBold = __DIR__ . '/../assets/fonts/Ubuntu-B.ttf';
+$fontRegular = __DIR__ . '/../public/assets/fonts/Ubuntu-R.ttf';
+$fontBold = __DIR__ . '/../public/assets/fonts/Ubuntu-B.ttf';
 
 function text($image, int $size, int $x, int $y, int $color, string $font, string $copy): void
 {
@@ -110,5 +110,5 @@ imageline($image, 992, 236, 1048, 252, $violet);
 text($image, 20, 844, 472, $white, $fontBold, 'Browser runtime');
 text($image, 17, 844, 506, $muted, $fontRegular, 'API • WebSocket • RSS • AI Agents');
 
-imagepng($image, __DIR__ . '/../assets/seo/trackers-lens-og.png', 9);
+imagepng($image, __DIR__ . '/../public/assets/seo/trackers-lens-og.png', 9);
 imagedestroy($image);

@@ -2,8 +2,8 @@
   const storageKey = "trackersLensLanguage";
   const launchStorageKey = "trackersLensLaunchEmails";
   const config = window.TrackersLensConfig || {};
-  const apiBaseUrl = (config.apiBaseUrl || "https://api.trackerslens.com").replace(/\/$/, "");
-  const appBaseUrl = (config.appBaseUrl || "https://app.trackerslens.com").replace(/\/$/, "");
+  const apiBaseUrl = (config.apiBaseUrl ?? "").replace(/\/$/, "");
+  const appBaseUrl = (config.appBaseUrl ?? "/app").replace(/\/$/, "");
   const labels = Object.assign({
     loginSubmit: "Accedi",
     registerSubmit: "Crea account",

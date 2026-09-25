@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Trackers Lens cloud command center" />
+    <title>Trackers Lens Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="/src/icons/logo.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/src/icons/logo48.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/src/icons/logo128.png" />
+    <script>
+      window.CMSwift_setting = {
+        modeDev: true,
+      };
+      window.__trackerLensBootErrors = [];
+      window.addEventListener("error", function (event) {
+        window.__trackerLensBootErrors.push(event.error || event.message);
+      });
+      window.addEventListener("unhandledrejection", function (event) {
+        window.__trackerLensBootErrors.push(
+          event.reason || "Unhandled promise rejection",
+        );
+      });
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <noscript>Abilita JavaScript per usare Trackers Lens Dashboard.</noscript>
+    <div id="app"></div>
+  </body>
+</html>

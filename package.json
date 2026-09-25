@@ -1,11 +1,23 @@
 {
   "scripts": {
-    "build": "npm run min:css && npm run min:js",
-    "min:css": "lightningcss --minify --targets '>= 0.25%' --bundle assets/css/style.css -o assets/css/style.min.css",
-    "min:js": "terser assets/js/main.js --compress --mangle -o assets/js/main.min.js"
+    "dev": "npm run build && php artisan serve --host=127.0.0.1",
+    "build": "npm run build:landing && npm run build:dashboard",
+    "build:landing": "npm run min:css && npm run min:js",
+    "build:dashboard": "vite build",
+    "min:css": "lightningcss --minify --targets '>= 0.25%' --bundle public/assets/css/style.css -o public/assets/css/style.min.css",
+    "min:js": "terser public/assets/js/main.js --compress --mangle -o public/assets/js/main.min.js",
+    "test": "php artisan test"
   },
   "devDependencies": {
     "lightningcss-cli": "^1.30.2",
-    "terser": "^5.43.1"
+    "terser": "^5.43.1",
+    "vite": "^8.0.12"
+  },
+  "name": "trackerslens-site",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@cmswift/core": "^1.0.24",
+    "@cmswift/ui": "^1.0.24"
   }
 }

@@ -223,7 +223,7 @@ return [
         'title' => 'Roadmap pragmatica verso il runtime completo.',
         'subtitle' => 'La sequenza privilegia quello che rende il prodotto usabile: prima runtime locale e asset, poi account cloud, marketplace, AI e app dedicata.',
         'q2' => ['title' => 'Plugin locale e landing pubblica', 'body' => 'Stabilizzare library, editor workspace, boxLens, boxTracker, monitor runtime, documentazione API e flusso login.'],
-        'q3' => ['title' => 'Dashboard cloud e account', 'body' => 'Collegare app.trackerslens.com all API reale: auth, profilo, asset cloud, API keys, statistiche e impostazioni.'],
+        'q3' => ['title' => 'Dashboard cloud e account', 'body' => 'Collegare /app all API reale: auth, profilo, asset cloud, API keys, statistiche e impostazioni.'],
         'q4' => ['title' => 'Marketplace e automazioni', 'body' => 'Pubblicazione box, template, versioning, installazione asset, changelog dei pacchetti e automazioni condivisibili.'],
         'y2027' => ['title' => 'App runtime dedicata', 'body' => 'Consolidare il motore oltre il plugin: worker persistenti, isolamento, sync controllata, AI jobs e strumenti professionali.'],
       ],
@@ -251,7 +251,7 @@ return [
         'boxes' => ['title' => 'boxLens e boxTracker', 'body' => 'boxLens gestisce visualizzazione HTML, CSS e JS. boxTracker e la parte dati: REST, RSS, WebSocket, trasformazioni, output channel, log, retry e stato runtime. I due comunicano tramite collegamenti e canali dati.'],
         'storage' => ['title' => 'IndexedDB e libreria locale', 'body' => 'Il database locale si chiama TrackersLens. Gli store principali sono tl_widgets per boxLens/boxTracker, tl_pages per workspace, tl_connections per collegamenti e tl_settings per preferenze.'],
         'screens' => ['title' => 'Schermate operative', 'body' => 'Oggi esistono library, editorWorkspace, workspace viewer, editorBoxLens, editorBoxTracker, database explorer, connections, analytics, AI Runtime Center e profilo. Alcune sono operative, altre sono mockup avanzati in preparazione.'],
-        'api' => ['title' => 'API e dashboard cloud', 'body' => 'L API Laravel gestisce autenticazione, sessioni e dati persistenti. La dashboard app.trackerslens.com consumera gli endpoint /api/... mentre il plugin resta orientato al runtime locale.'],
+        'api' => ['title' => 'API e dashboard cloud', 'body' => 'L API Laravel gestisce autenticazione, sessioni e dati persistenti. La dashboard /app consumera gli endpoint /api/... mentre il plugin resta orientato al runtime locale.'],
       ],
       'privacy' => [
         'metaTitle' => 'Privacy Policy — Trackers Lens',
