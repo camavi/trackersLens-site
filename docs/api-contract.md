@@ -55,9 +55,20 @@ Response:
   "id": 1,
   "name": "Thomas Lane",
   "email": "user@example.com",
-  "plan": "pro"
+  "created_at": "2026-09-25T10:00:00.000000Z",
+  "email_verified_at": null
 }
 ```
+
+### `PATCH /api/user`
+
+Authenticated profile update. Required fields: `name`, `email`, `current_password`. Email must be unique. A changed email clears the previous verification timestamp. Returns the current user payload, without credentials or inferred subscription entitlements. Rate limit: 10 requests/minute.
+
+### `PUT /api/user/password`
+
+Authenticated password change. Required fields: `current_password`, `password`, `password_confirmation`. The new password must differ from the current password and contain at least 8 characters. Returns `204 No Content`; rotates the remember token and the current session ID. This operation does not claim to revoke every active session. Rate limit: 10 requests/minute.
+
+Account mutations return `401` for unauthenticated callers and `422` with field errors for invalid input. Cookie-authenticated clients must initialize CSRF and send `X-XSRF-TOKEN` as for login. Desktop clients use a Main-owned Electron session; the website continues using same-origin browser cookies.
 
 ## Landing
 

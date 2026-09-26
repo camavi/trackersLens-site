@@ -12,6 +12,8 @@ Route::post('/contact-messages', [LandingController::class, 'contact'])->middlew
 
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/user', [AuthController::class, 'user']);
+    Route::patch('/user', [AuthController::class, 'updateProfile'])->middleware('throttle:10,1');
+    Route::put('/user/password', [AuthController::class, 'updatePassword'])->middleware('throttle:10,1');
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('dashboard')->group(function (): void {

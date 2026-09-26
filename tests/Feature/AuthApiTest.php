@@ -24,7 +24,7 @@ class AuthApiTest extends TestCase
         $response
             ->assertCreated()
             ->assertJsonPath('user.email', 'thomas@example.com')
-            ->assertJsonPath('user.plan', 'pro');
+            ->assertJsonMissingPath('user.plan');
 
         $this->assertAuthenticated();
     }
@@ -76,6 +76,40 @@ class AuthApiTest extends TestCase
         $this->assertFalse(\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::fromFrontend($request));
         $request->headers->set('Referer', 'http://127.0.0.1:8001/it/');
         $this->assertTrue(\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::fromFrontend($request));
+    }
+
+    public function test_account_mutations_require_authentication(): void
+    {
+        $this->patchJson('/api/user', [])->assertUnauthorized();
+        $this->putJson('/api/user/password', [])->assertUnauthorized();
+    }
+
+    public function test_profile_changes_require_current_password_and_unique_email(): void
+    {
+        $user = User::factory()->create(['password' => 'old-password', 'email_verified_at' => now()]);
+        $other = User::factory()->create();
+        $this->actingAs($user)->fromFrontend();
+        $data = ['name' => 'Updated name', 'email' => 'updated@example.com', 'current_password' => 'wrong'];
+        $this->patchJson('/api/user', $data)->assertUnprocessable()->assertJsonValidationErrors('current_password');
+        $this->assertNotEquals('Updated name', $user->fresh()->name);
+        $data['current_password'] = 'old-password';
+        $this->patchJson('/api/user', [...$data, 'email' => $other->email])->assertUnprocessable()->assertJsonValidationErrors('email');
+        $this->patchJson('/api/user', $data)->assertOk()->assertJsonPath('email', 'updated@example.com')->assertJsonPath('email_verified_at', null)->assertJsonMissingPath('password');
+        $this->assertEquals('Updated name', $user->fresh()->name);
+        $this->assertEquals($other->email, $other->fresh()->email);
+    }
+
+    public function test_password_change_validates_current_password_and_confirmation(): void
+    {
+        $user = User::factory()->create(['password' => 'old-password']);
+        $this->actingAs($user)->fromFrontend();
+        $data = ['current_password' => 'wrong', 'password' => 'new-password', 'password_confirmation' => 'new-password'];
+        $this->putJson('/api/user/password', $data)->assertUnprocessable()->assertJsonValidationErrors('current_password');
+        $data['current_password'] = 'old-password';
+        $this->putJson('/api/user/password', [...$data, 'password_confirmation' => 'different'])->assertUnprocessable()->assertJsonValidationErrors('password');
+        $this->putJson('/api/user/password', $data)->assertNoContent();
+        $this->assertTrue(\Illuminate\Support\Facades\Hash::check('new-password', $user->fresh()->password));
+        $this->assertFalse(\Illuminate\Support\Facades\Hash::check('old-password', $user->fresh()->password));
     }
 
     private function fromFrontend(): self
