@@ -4,7 +4,7 @@ import cmswiftCoreUrl from "@cmswift/core?url";
 import cmswiftUiUrl from "@cmswift/ui?url";
 import { createI18n } from "./i18n.js";
 import { AppLayout } from "./layouts/AppLayout.js";
-import { DashboardPage, PlaceholderPage } from "./pages/DashboardPage.js";
+import { DashboardPage, MarketplacePage, PlaceholderPage } from "./pages/DashboardPage.js";
 import { navigationItems } from "./services/dashboardData.js";
 import { installCmswiftIconPathPatch } from "./cmswiftIconPathPatch.js";
 
@@ -88,7 +88,9 @@ function configureRouter(CMSwift) {
       _.router.add(item.path, (ctx) => AppLayout(
         CMSwift,
         ctx,
-        PlaceholderPage(CMSwift, item.label, "Workspace module ready for cloud data integration.", item.icon)
+        item.path === "/app/marketplace"
+          ? MarketplacePage(CMSwift)
+          : PlaceholderPage(CMSwift, item.label, "This workspace module is not connected yet.", item.icon)
       ));
     });
 

@@ -244,45 +244,15 @@ $jsonLd = [
     };
   </script>
   <a class="skip-link" href="#main"><?= t('accessibility.skip') ?></a>
-
-  <header class="site-header" data-header>
-    <nav class="navbar container" aria-label="Primary navigation">
-      <a class="brand" href="<?= page_url('home') ?>#hero" aria-label="Trackers Lens home">
-        <img class="brand-mark" src="/assets/icons/logo.svg" alt="" aria-hidden="true" width="42" height="42" fetchpriority="high" decoding="async">
-        <span class="brand-name"><span>Trackers</span> <strong>Lens</strong></span>
-        <span class="brand-arrow" aria-hidden="true">›</span>
-      </a>
-
-      <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="nav-panel" id="site-menu" data-menu>
-        <ul class="nav-links">
-          <li><a href="<?= page_url('features') ?>"><?= t('nav.features') ?></a></li>
-          <li><a href="<?= page_url('home') ?>#why"><?= t('nav.why') ?></a></li>
-          <li><a href="<?= page_url('home') ?>#runtimes"><?= t('nav.marketplace') ?></a></li>
-          <li><a href="<?= page_url('pricing') ?>"><?= t('nav.pricing') ?></a></li>
-          <li><a href="<?= page_url('docs') ?>"><?= t('nav.docs') ?></a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <label class="language-select" aria-label="<?= t('accessibility.language') ?>">
-            <span class="sr-only"><?= t('accessibility.language') ?></span>
-            <select data-language-switcher aria-label="Language switcher">
-              <option value="<?= lang_url('it') ?>" <?= $lang === 'it' ? 'selected' : '' ?>>IT</option>
-              <option value="<?= lang_url('en') ?>" <?= $lang === 'en' ? 'selected' : '' ?>>EN</option>
-              <option value="<?= lang_url('es') ?>" <?= $lang === 'es' ? 'selected' : '' ?>>ES</option>
-            </select>
-          </label>
-          <button class="btn btn-ghost" type="button" data-login-open><?= icon('login') ?><?= t('nav.login') ?></button>
-          <button class="btn btn-primary" type="button" data-launch-open><?= icon('notify') ?><?= t('nav.download') ?></button>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <?php
+  $navLocale = $lang;
+  $navLabels = ['features' => tv('nav.features'), 'why' => tv('nav.why'), 'marketplace' => tv('nav.marketplace'), 'pricing' => tv('nav.pricing'), 'docs' => tv('nav.docs'), 'language' => tv('accessibility.language'), 'login' => tv('nav.login'), 'download' => tv('nav.download')];
+  $navLanguages = [];
+  foreach ($supportedLanguages as $language) $navLanguages[$language] = ['label' => strtoupper($language), 'url' => lang_url($language)];
+  $navHomeUrl = page_url('home'); $navFeaturesUrl = page_url('features'); $navPricingUrl = page_url('pricing'); $navDocsUrl = page_url('docs');
+  $marketplaceNav = false;
+  require __DIR__.'/navbar.php';
+  ?>
 
   <main id="main">
     <?php if ($page === 'home'): ?>

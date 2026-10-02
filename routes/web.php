@@ -11,6 +11,9 @@ Route::get('/{locale}/{page?}', fn () => view('landing.index'))
     ->where('locale', 'it|en|es')
     ->where('page', 'features|pricing|roadmap|changelog|docs|privacy|terms|blog|about')
     ->withoutMiddleware([StartSession::class, ShareErrorsFromSession::class, PreventRequestForgery::class]);
+Route::get('/marketplace', function () {
+    return view('landing.marketplace');
+})->withoutMiddleware([StartSession::class, ShareErrorsFromSession::class, PreventRequestForgery::class]);
 Route::get('/app/{path?}', function () {
     abort_unless(is_file(public_path('build/dashboard/index.html')), 503, 'Run npm run build first.');
     return response()->file(public_path('build/dashboard/index.html'), ['Cache-Control' => 'no-cache']);

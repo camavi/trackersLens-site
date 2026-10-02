@@ -14,7 +14,7 @@ return [
     'nav' => [
       'features' => 'Funzionalita',
       'why' => 'Perche Trackers Lens',
-      'marketplace' => 'Runtime',
+      'marketplace' => 'Marketplace',
       'pricing' => 'Prezzi',
       'docs' => 'Documentazione',
       'login' => 'Accedi',
@@ -503,7 +503,7 @@ return [
     'nav' => [
       'features' => 'Features',
       'why' => 'Why Trackers Lens',
-      'marketplace' => 'Runtimes',
+      'marketplace' => 'Marketplace',
       'pricing' => 'Pricing',
       'docs' => 'Docs',
       'login' => 'Login',
